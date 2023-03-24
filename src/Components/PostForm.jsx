@@ -1,20 +1,17 @@
-import React, {useState} from 'react';
+import React, { useState} from 'react';
 import MyInput from "./UI/input/MyInput";
 import MyButton from "./UI/button/MyButton";
 
-const PostForm = () => {
-
-    const [posts, setPosts] = useState([
-        {id: 1, title: 'Javascript', body: 'Description'},
-        {id: 2, title: 'Javascript', body: 'Description'},
-        {id: 3, title: 'Javascript', body: 'Description'},
-    ])
+const PostForm = ({create}) => {
 
     const [post, setPost] = useState({title: '', body: ''})
 
     const addNewPost = (e) => {
         e.preventDefault()
-        setPosts([...posts, {...post, id: Date.now()}])
+        const newPost = {
+            ...post,id:Date.now()
+        }
+        create(newPost)
         setPost({title: '', body: ''})
     }
 
